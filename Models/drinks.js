@@ -24,5 +24,5 @@ const drinkSchema = mongoose.Schema(
   }
 );
 
-const Drink = mongoose.model("Drink", recipeSchema);
+const Drink = mongoose.model("Drink", drinkSchema);
 export default Drink;

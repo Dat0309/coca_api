@@ -89,6 +89,8 @@ userRouter.get(
     if(bankingNumberExists){
       res.status(400);
       throw new Error("Mã ngân hàng đã tồn tại");
+    }else{
+      res.status(200);
     }
   })
 )

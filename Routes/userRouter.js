@@ -81,6 +81,17 @@ userRouter.post(
     }
   })
 );
+userRouter.get(
+  "/bankingNumber/:banking_number",
+  asyncHandler(async (req, res) => {
+    const bankingNumberExists = await User.findOne(req.params.banking_number)
+
+    if(bankingNumberExists){
+      res.status(400);
+      throw new Error("Mã ngân hàng đã tồn tại");
+    }
+  })
+)
 
 /**
  * profile

@@ -5,6 +5,7 @@ import ImportData from "./DataImport.js";
 import { errorHandler, notFound } from "./Middleware/Errors.js";
 import userRouter from "./Routes/userRouter.js";
 import drinkRouter from "./Routes/drinkRouter.js";
+import orderRouter from "./Routes/orderRouter.js";
 
 dotenv.config();
 connectDatabase();
@@ -39,6 +40,7 @@ app.use(function (req, res, next) {
 app.use("/api/v1/import", ImportData);
 app.use("/api/v1/user", userRouter);
 app.use("/api/v1/drink", drinkRouter);
+app.use("/api/v1/order", orderRouter);
 
 app.get("/api/config/paypal", (req, res) => {
   res.send(

@@ -42,7 +42,7 @@ userSchema.methods.matchPassword = async function (enterPassword) {
 };
 
 // Register
-userSchema.pre("save", async function (next) {
+userSchema.create("save", async function (next) {
   if (!this.isModified("password")) {
     next();
   }

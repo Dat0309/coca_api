@@ -46,7 +46,6 @@ userRouter.post(
       password, 
       banking_number
     } = req.body;
-    const const_banking_balance = 0;
     const userExists = await User.findOne({ username });
 
     if (userExists) {
@@ -61,7 +60,6 @@ userRouter.post(
       username, 
       password, 
       banking_number,
-      const_banking_balance
     });
 
     if (user) {
@@ -72,7 +70,7 @@ userRouter.post(
         phone_number: user.phone_number,
         password: user.password,
         banking_number: user.banking_number,
-        banking_balance: const_banking_balance,
+        banking_balance: 0,
         token: generateToken(user._id),
       });
     } else {

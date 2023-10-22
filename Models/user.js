@@ -29,7 +29,6 @@ const userSchema = mongoose.Schema(
     },
     banking_balance: {
       type: Number,
-      default: 0
     }
   },
   {

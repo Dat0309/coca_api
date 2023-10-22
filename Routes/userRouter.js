@@ -141,9 +141,9 @@ userRouter.put(
       user.banking_balance = user.banking_balance + req.body.banking_balance;
 
       const updatedUser = await user.save;
-      res.status(200).json({
-        message: "Update banking balance success"
-      });
+      res.status(200).json(
+        updatedUser
+      );
     }else{
       res.status(404);
       throw new Error("Không tìm thấy User");

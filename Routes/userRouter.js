@@ -18,7 +18,8 @@ userRouter.post(
     if (user && (await user.matchPassword(password))) {
       res.json({
         _id: user._id,
-        name: user.first_name,
+        first_name: user.first_name,
+        last_name: user.last_name,
         phone_number: user.phone_number,
         banking_number: user.banking_number,
         banking_balance: user.banking_balance,

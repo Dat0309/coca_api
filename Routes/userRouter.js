@@ -54,7 +54,7 @@ userRouter.post(
       throw new Error("Người dùng đã tồn tại");
     }
 
-    const user = new User.create({
+    const user = await User.create({
       first_name,
       last_name, 
       phone_number, 

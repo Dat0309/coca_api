@@ -110,7 +110,7 @@ userRouter.get(
         last_name: user.last_name,
         phone_number: user.phone_number,
         banking_number: user.banking_number,
-        banking_balance: const_banking_balance,
+        banking_balance: user.banking_balance,
         token: generateToken(user._id),
       });
     } else {

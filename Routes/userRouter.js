@@ -132,6 +132,48 @@ userRouter.get(
   })
 );
 
+userRouter.put(
+  "/increateBalance",
+  protect,
+  asyncHandler( async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if(user){
+      user.banking_balance = user.banking_balance + req.body.banking_balance;
+
+      const updatedUser = await user.save;
+      res.status(200).json({
+        message: "Update banking balance success"
+      });
+    }else{
+      res.status(404);
+      throw new Error("Không tìm thấy User");
+    }
+  })
+)
+
+userRouter.put(
+  "/decreateBalance",
+  protect,
+  asyncHandler( async (req, res) => {
+    const user = await User.findById(req.user._id);
+    if(user){
+      if(req.body.banking_balance < user.banking_balance){
+        user.banking_balance = user.banking_balance - req.body.banking_balance;
+        const updatedUser = await user.save;
+
+        res.status(200).json(
+          updatedUser
+        );
+      }else{
+        res.status(400).json({message: "Người dùng không đủ số dư"});
+      }
+    }else{
+      res.status(404);
+      throw new Error("Không tìm thấy User");
+    }
+  })
+)
+
 /**
  * Update profile
  */

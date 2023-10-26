@@ -142,7 +142,18 @@ userRouter.put(
 
       const updatedUser = await user.save();
       if(updatedUser){
-        res.json(updatedUser);
+        res.status(200).json({
+          _id: updatedUser._id,
+          first_name: updatedUser.first_name,
+          last_name: updatedUser.last_name,
+          phone_number: updatedUser.phone_number,
+          username: updatedUser.username,
+          password: updatedUser.password,
+          banking_number: updatedUser.banking_number,
+          banking_balance: updatedUser.banking_balance,
+          createdAt: updatedUser.createdAt,
+          token: generateToken(updatedUser._id),
+        });
       }else{
         res.status(400);
         throw new Error("Không thể update user");

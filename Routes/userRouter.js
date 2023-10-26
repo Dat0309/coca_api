@@ -140,19 +140,9 @@ userRouter.put(
     if(user){
       user.banking_balance = user.banking_balance + req.body.banking_balance || user.banking_balance;
 
-      const updatedUser = await user.save;
+      const updatedUser = await user.save();
       if(updatedUser){
-        res.json({
-          _id: updatedUser._id,
-          first_name: updatedUser.first_name,
-          last_name: updatedUser.last_name,
-          phone_number: updatedUser.phone_number,
-          username: updatedUser.username,
-          password: updatedUser.password,
-          banking_number: updatedUser.banking_number,
-          banking_balance: updatedUser.banking_balance,
-          createdAt: updatedUser.createdAt,
-        });
+        res.json(updatedUser);
       }else{
         res.status(400);
         throw new Error("Không thể update user");
@@ -173,7 +163,7 @@ userRouter.put(
     if(user){
       if(req.body.banking_balance < user.banking_balance){
         user.banking_balance = user.banking_balance - req.body.banking_balance || user.banking_balance;
-        const updatedUser = await user.save;
+        const updatedUser = await user.save();
 
         res.status(200).json({
           _id: updatedUser._id,

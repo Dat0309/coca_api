@@ -138,7 +138,7 @@ userRouter.put(
   asyncHandler( async (req, res) => {
     const user = await User.findById(req.user._id);
     if(user){
-      user.banking_balance = user.banking_balance + req.body.banking_balance;
+      user.banking_balance = user.banking_balance + req.body.banking_balance || user.banking_balance;
 
       const updatedUser = await user.save;
       if(updatedUser){
@@ -172,7 +172,7 @@ userRouter.put(
     const user = await User.findById(req.user._id);
     if(user){
       if(req.body.banking_balance < user.banking_balance){
-        user.banking_balance = user.banking_balance - req.body.banking_balance;
+        user.banking_balance = user.banking_balance - req.body.banking_balance || user.banking_balance;
         const updatedUser = await user.save;
 
         res.status(200).json({

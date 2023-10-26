@@ -53,6 +53,7 @@ userRouter.post(
       res.status(400);
       throw new Error("Người dùng đã tồn tại");
     }
+    const banking_balance = 0;
 
     const user = await User.create({
       first_name,
@@ -61,6 +62,7 @@ userRouter.post(
       username, 
       password, 
       banking_number,
+      banking_balance
     });
 
     if (user) {

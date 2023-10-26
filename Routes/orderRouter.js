@@ -35,7 +35,7 @@ orderRouter.post(
         if(createOrder){
           user.banking_balance = user.banking_balance - total_price;
           const updatedUser = await user.save();
-          res.status(201).json(createOrder, updatedUser);
+          res.status(201).json({createOrder, updatedUser});
         }
       }else{
         res.status(404);

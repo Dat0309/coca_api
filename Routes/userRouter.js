@@ -142,7 +142,7 @@ userRouter.put(
 
       const updatedUser = await user.save;
       if(updatedUser){
-        res.status(200).json({
+        res.json({
           _id: updatedUser._id,
           first_name: updatedUser.first_name,
           last_name: updatedUser.last_name,
@@ -152,7 +152,6 @@ userRouter.put(
           banking_number: updatedUser.banking_number,
           banking_balance: updatedUser.banking_balance,
           createdAt: updatedUser.createdAt,
-          token: generateToken(updatedUser._id),
         });
       }else{
         res.status(400);
